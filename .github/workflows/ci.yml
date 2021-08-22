@@ -1,99 +1,23 @@
-# name: GitHub Actions Build and Deploy Demo
-
-name: Build and Deploy
-on: # 监听 master 分支上的 push 事件
+name: GitHub Actions Build and Deploy Demo
+on:
   push:
     branches:
       - main
-    paths:
-      - ".github/workflows/**"
-      - "__test__/**"
-      - "src/**"
-
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest # 构建环境使用 ubuntu
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
+        uses: actions/checkout@main # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
         with:
           persist-credentials: false
-
-      - name: Install and Build # 下载依赖 打包项目
+      - name: Install and Build
         run: |
           npm install
-          npm run build
-      - name: Deploy # 将打包内容发布到 github page
-        uses: JamesIves/github-pages-deploy-action@main # 使用别人写好的 actions
-        with: # 自定义环境变量
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: build
-          # wyp0712.github.io
-          REPOSITORY_NAME: wyp0712/wyp0712.github.io # 这是我的 github page 地址
-          TARGET_FOLDER: github-actions-test # 打包的文件将放到静态服务器 github-actions-demo 目录下
-
-# on:
-#   push:
-#     branches:
-#       - main
-#     paths:
-#       - ".github/workflows/**"
-#       - "__test__/**"
-#       - "src/**"
-
-# jobs:
-#   test:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: User nodeJS
-#         uses: actions/setup-node@v1
-#         with:
-#           node-version: v14.16.0
-
-#   print-node-version:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: User nodeJS
-#         uses: actions/setup-node@v1
-#       - name: print node version
-#         run: |
-#           node -v
-#           npx -v
-#           echo 'hello world'
-
-#       # run: |
-#       #   node -v
-#       #   npm -v
-#       #   echo 'hello world'
-
-#   build-and-deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@main # git pull
-#       - name: Build and Deploy
-#         uses: JamesIves/github-pages-deploy-action@main
-#         env:
-#           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-#           BRANCH: gh-pages
-#           FOLDER: build
-#           BUILD_SCRIPT: npm install && npm run build
-
-# env:
-#   ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-#   BRANCH: gh-pages
-#   FOLDER: build
-#   BUILD_SCRIPT: npm install && npm run build
-# build-and-deploy:
-#   runs-on: ubuntu-latest
-#   steps:
-#     - name: Checkout
-#       uses: actions/checkout@main # git pull
-#     - name: Build and Deploy
-#       uses: JamesIves/github-pages-deploy-action@main
-#       env:
-#         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-#         BRANCH: gh-pages
-#         FOLDER: build
-#         BUILD_SCRIPT: npm install && npm run build
+          npm run-script build
+      # - name: Deploy
+      #   uses: JamesIves/github-pages-deploy-action@main
+      #   with:
+      #     ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      #     BRANCH: gh-pages
+      #     FOLDER: build
