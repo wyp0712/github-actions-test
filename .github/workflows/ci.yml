@@ -13,10 +13,12 @@ jobs:
           persist-credentials: false
       - name: Install and Build
         run: |
-          npm install
-          npm run-script build
+          yarn install
+          yarn run build
+          cp build/index.html build/404.html
+
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@main
+        uses: JamesIves/github-pages-deploy-action@gh-pages
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
