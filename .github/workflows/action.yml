@@ -7,11 +7,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-  steps:
     - name: print
       # uses: actions/checkout@main
-      run: |
-        echo "hello world"
+      run: echo "hello world"
 
   build-and-deploy:
     runs-on: ubuntu-latest
