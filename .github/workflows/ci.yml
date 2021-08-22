@@ -27,7 +27,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@main # 使用别人写好的 actions
         with: # 自定义环境变量
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: main
+          BRANCH: gh-pages
           FOLDER: build
           # wyp0712.github.io
           REPOSITORY_NAME: wyp0712/wyp0712.github.io # 这是我的 github page 地址
