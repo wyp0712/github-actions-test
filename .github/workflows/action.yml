@@ -4,22 +4,24 @@ on:
     branches:
       - main
 jobs:
+  test:
+    runs-on: ubuntu-latest
+  steps:
+    - name: print
+      # uses: actions/checkout@main
+      run: |
+        echo "hello world"
+
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
-        with:
-          persist-credentials: false
-      - name: Install and Build
-        run: |
-          yarn install
-          yarn run build
-        # cp build/index.html build/404.html
+        uses: actions/checkout@main
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@gh-pages
-        with:
+      - name: Build and Deploy
+        uses: JamesIves/github-pages-deploy-action@main
+        env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
           FOLDER: build
+          BUILD_SCRIPT: npm install && npm run build
