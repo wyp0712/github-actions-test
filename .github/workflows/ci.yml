@@ -10,16 +10,28 @@ on:
 
 jobs:
   test:
-    runs-on: test
+    runs-on: ubuntu-latest
     steps:
       - name: User nodeJS
         uses: actions/setup-node@v1
         with:
           node-version: v14.16.0
-        # run: |
-        #   node -v
-        #   npm -v
-        #   echo 'hello world'
+
+  print-node-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: User nodeJS
+        uses: actions/setup-node@v1
+      - name: print node version
+        run: |
+          node -v
+          npx -v
+          echo 'hello world'
+
+      # run: |
+      #   node -v
+      #   npm -v
+      #   echo 'hello world'
 
   # build-and-deploy:
   #   runs-on: ubuntu-latest
