@@ -37,17 +37,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        users: actions/checkout@main # git pull
+        uses: actions/checkout@main # git pull
+
+
   # build-and-deploy:
   #   runs-on: ubuntu-latest
   #   steps:
   #     - name: Checkout
   #       uses: actions/checkout@main # git pull
-
-  # - name: Build and Deploy
-  #   uses: JamesIves/github-pages-deploy-action@main
-  #   env:
-  #     ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-  #     BRANCH: gh-pages
-  #     FOLDER: build
-  #     BUILD_SCRIPT: npm install && npm run build
+  #     - name: Build and Deploy
+  #       uses: JamesIves/github-pages-deploy-action@main
+  #       env:
+  #         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+  #         BRANCH: gh-pages
+  #         FOLDER: build
+  #         BUILD_SCRIPT: npm install && npm run build
