@@ -39,10 +39,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@main # git pull
       - name: Build and Deploy
-        # uses: JamesIves/github-pages-deploy-action@main
-        run: |
-          echo "secrets: ACCESS_TOKEN"
-          ${{ secrets.ACCESS_TOKEN }}
+        uses: JamesIves/github-pages-deploy-action@main
 
         # env:
         #   ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
