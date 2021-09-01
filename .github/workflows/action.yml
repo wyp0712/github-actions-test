@@ -1,25 +1,27 @@
 name: GitHub Actions Build and Deploy Demo
 
+# 监听
 on:
-  push:
-    branches:
-      - master
+  push: # 监听git push
+    branches: # 监听哪个分支
+      - main # master分支
 
+# 任务：
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
+    runs-on: ubuntu-latest # 运行在哪个环境下 center os ubuntu
+    steps: # 任务步骤
+      - name: Checkout # git pull
         uses: actions/checkout@main # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
         with:
           persist-credentials: false
       - name: Install and Build
-        run: |
+        run: | # | 执行多个任务
           npm install
           npm run-script build
-      - name: Deploy
+      - name: Deploy # 部署
         uses: JamesIves/github-pages-deploy-action@main
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
+          BRANCH: gh-pages # 服务器部署分支， 静态资源部署分支
           FOLDER: build
